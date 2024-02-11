@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Claim{% endblock %}
+
+{% block body %}
+    <h1>Create New Claim</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.subject) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.etat) }}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}

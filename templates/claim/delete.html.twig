@@ -1,0 +1,40 @@
+{# templates/claim/delete.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Delete Claim{% endblock %}
+
+{% block body %}
+    <h1>Delete Claim</h1>
+    <p>Are you sure you want to delete this claim?</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Claimer</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ claim.id }}</td>
+                <td>{{ claim.subject }}</td>
+                <td>{{ claim.description }}</td>
+                <td>{{ claim.date|date('Y-m-d') }}</td>
+                <td>{{ claim.etat }}</td>
+                <td>{{ claim.getClaimer().getFullName() }}</td>
+                <td>
+                    <form method="post" action="{{ path('deleteClaim', {'id': claim.id}) }}" onsubmit="return confirm('Are you sure you want to delete this claim?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('showAllClaims') }}">Back to All Claims</a>
+{% endblock %}

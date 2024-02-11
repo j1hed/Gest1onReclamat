@@ -1,0 +1,19 @@
+{# templates/claim/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Claim Details{% endblock %}
+
+{% block body %}
+    <h1>Claim Details</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ claim.id }}</li>
+        <li><strong>Subject:</strong> {{ claim.subject }}</li>
+        <li><strong>Description:</strong> {{ claim.description }}</li>
+        <li><strong>Date:</strong> {{ claim.date|date('Y-m-d') }}</li>
+        <li><strong>Status:</strong> {{ claim.etat }}</li>
+        {# Assuming claimer is a User object with a username property #}
+        <li><strong>Claimer:</strong> {{ claim.getClaimer().getFullName() }}</li>
+    </ul>
+    <a href="{{ path('app_claim') }}">Back to Claim List</a>
+{% endblock %}
