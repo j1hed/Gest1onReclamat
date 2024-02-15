@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ClaimRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use symfony\component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ClaimRepository::class)]
 class Claim
@@ -30,6 +32,15 @@ class Claim
     #[ORM\JoinColumn(nullable: false)]
     private ?User $claimer = null;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="Claim", orphanRemoval=true)
+     */
+    private $answers;
+
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
